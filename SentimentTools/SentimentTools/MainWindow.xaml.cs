@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 namespace SentimentTools
 {
     /// <summary>
@@ -20,13 +19,25 @@ namespace SentimentTools
     /// </summary>
     public partial class MainWindow : Window
     {
+        //public static readonly ILog log = LogManager.GetLogger("rizhi");
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void SentimentClassify(object sender, RoutedEventArgs e)
         {
+            string strtxt = SentimentInput.Text.ToString();
+            SentimentResult.Text = strtxt;
+            MyLog.WriteLog(Global.TypeSentenceSentiment, strtxt);
+        }
+
+
+        private void SentenceCopus(object sender, RoutedEventArgs e)
+        {
+            string strtxt = CopusInput.Text.ToString();
+            CopusResult.Text = CopusProcess.getSentenceCopus(strtxt);
+            MyLog.WriteLog(Global.TypeSentenceSentiment, strtxt);
 
         }
     }
