@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+
 namespace SentimentTools
 {
     /// <summary>
@@ -23,22 +25,25 @@ namespace SentimentTools
         public MainWindow()
         {
             InitializeComponent();
+            Global.conf();
         }
 
         private void SentimentClassify(object sender, RoutedEventArgs e)
         {
             string strtxt = SentimentInput.Text.ToString();
             SentimentResult.Text = strtxt;
-            MyLog.WriteLog(Global.TypeSentenceSentiment, strtxt);
+            MyLog.WriteInfo(Global.TypeSentenceSentiment, strtxt);
         }
+
 
 
         private void SentenceCopus(object sender, RoutedEventArgs e)
         {
-            string strtxt = CopusInput.Text.ToString();
-            CopusResult.Text = CopusProcess.getSentenceCopus(strtxt);
-            MyLog.WriteLog(Global.TypeSentenceSentiment, strtxt);
-
+            String str = CopusInput.Text.ToString();
+            string ans = CopusProcess.getSentenceCopus(str);
+            CopusResult.Text = ans;
+            MyLog.WriteInfo(Global.TypeSentenceCopus, ans);
+            
         }
     }
 }

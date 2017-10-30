@@ -11,9 +11,17 @@ namespace SentimentTools
     {
         public static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public static void WriteLog(string type,string msg)
+        public static void WriteInfo(string type,string msg)
         {
-            log.Info("【"+type+"】 "+ msg);
+            log.Info("【" + type + "】 " + msg);
+        }
+        public static void WriteDebug(string msg)
+        {
+            log.Debug(msg);
+        }
+        public static void WriteError(string msg)
+        {
+            log.Error(msg);
         }
 
     }
