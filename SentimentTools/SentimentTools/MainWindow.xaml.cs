@@ -25,9 +25,53 @@ namespace SentimentTools
             InitializeComponent();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+
+        private void functionMenu_Initialized(object sender, EventArgs e)
+        {
+            this.functionMenu.ContextMenu = null;
+        }
+
+
+        private void functionMenu_Click(object sender, RoutedEventArgs e)
+        {
+            this.functionContextMenu.PlacementTarget = this.functionMenu;
+            this.functionContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+            this.functionContextMenu.IsOpen = true;
+        }
+
+        private void helpMenu_Initialized(object sender, EventArgs e)
+        {
+            this.functionMenu.ContextMenu = null;
+        }
+
+
+        private void helpMenu_Click(object sender, RoutedEventArgs e)
+        {
+            this.helpContextMenu.PlacementTarget = this.helpMenu;
+            this.helpContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+            this.helpContextMenu.IsOpen = true;
+        }
+
+        private void quitButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.Shutdown();
+        }
+
+        private void tagButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void sentimentButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void tagFunction_Click(object sender, RoutedEventArgs e)
+        {
+            TagWindow tw = new TagWindow();
+            tw.Owner = this;
+            tw.Show();
         }
     }
 }
