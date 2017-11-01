@@ -5,17 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SentimentTools"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Button x:Name="SentimentButton" Content="执行" HorizontalAlignment="Left" Margin="323,38,0,0" VerticalAlignment="Top" Width="75" Click="SentimentClassify" Height="30"/>
-        <TextBox x:Name="SentimentInput" HorizontalAlignment="Left" Height="25" Margin="27,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="253"/>
-        <TextBox x:Name="SentimentResult" HorizontalAlignment="Left" Height="50" Margin="27,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" RenderTransformOrigin="0.5,0.5"/>
-       
-        <Button x:Name="CopusButton" Content="执行" HorizontalAlignment="Left" Margin="323,167,0,0" VerticalAlignment="Top" Width="75" Click="SentenceCopus" Height="33"/>
-        <TextBox x:Name="CopusInput" HorizontalAlignment="Left" Height="28" Margin="27,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="253"/>
-        <TextBox x:Name="CopusResult" HorizontalAlignment="Left" Height="50" Margin="27,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" RenderTransformOrigin="0.5,0.5"/>
 
+        Title="情感分析工具" Height="650" Width="1000" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
 
+    <Grid Margin="0,0,0,-2">
+        <Button x:Name="functionMenu" Content="功能性分析" HorizontalAlignment="Left" Margin="47,10,0,0" VerticalAlignment="Top" Width="112" Click="functionMenu_Click" Initialized="functionMenu_Initialized" Height="30" FontSize="16">
+            <Button.ContextMenu>
+                <ContextMenu x:Name="functionContextMenu">
+                    <MenuItem x:Name="tagFunction" Header="分词" FontSize="14" Click="tagFunction_Click"/>
+                    <MenuItem x:Name="sentimentFunction" Header="情感分析" FontSize="14"/>
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
+        <Button x:Name="helpMenu" Content="帮助" HorizontalAlignment="Left" Margin="221,10,0,0" VerticalAlignment="Top" Width="96" Height="30" Click="helpMenu_Click" Initialized="helpMenu_Initialized" FontSize="16">
+            <Button.ContextMenu>
+                <ContextMenu x:Name="helpContextMenu">
+                    <MenuItem x:Name="registerHelp" Header="注册" FontSize="14"/>
+                    <MenuItem x:Name="aboutHelp" Header="关于" FontSize="14"/>
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
+        <Button x:Name="quitButton" Content="退出" HorizontalAlignment="Left" Margin="387,10,0,0" VerticalAlignment="Top" Width="81" Height="30" Click="quitButton_Click" FontSize="16"/>
+
+        <Line X1="10" Y1="50" X2="985" Y2="50" Stroke="Gray"/>
+        <Line X1="650" Y1="60" X2="650" Y2="600" Stroke="Gray"/>
+        <Line X1="10" Y1="345" X2="640" Y2="345" Stroke="Gray"/>
+
+        <TextBlock x:Name="demoTextBlock" HorizontalAlignment="Left" Margin="56,77,0,0" TextWrapping="Wrap" Text="功能demo展示" VerticalAlignment="Top" Width="110" FontSize="16"/>
+        <TextBlock x:Name="demoTipTextBlock" HorizontalAlignment="Left" Margin="184,81,0,0" TextWrapping="Wrap" Text="注：大量文本的分析请使用'功能性分析'下对应的工具" VerticalAlignment="Top" Width="336" FontSize="11"/>
+
+        <TextBlock x:Name="tagTextBlock1" HorizontalAlignment="Left" Margin="79,114,0,0" TextWrapping="Wrap" Text="分词" VerticalAlignment="Top" FontSize="16"/>
+        <TextBlock x:Name="tagTextBlock2" HorizontalAlignment="Left" Margin="97,149,0,0" TextWrapping="Wrap" Text="请输入一句话：" VerticalAlignment="Top" FontSize="16"/>
+        <TextBox x:Name="tagTextBox" HorizontalAlignment="Left" Height="42" Margin="221,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" VerticalScrollBarVisibility="Visible" FontSize="16"/>
+        <Button x:Name="tagButton" Content="执行" HorizontalAlignment="Left" Margin="538,163,0,0" VerticalAlignment="Top" Width="75" Height="28" Click="tagButton_Click"/>
+        <TextBlock x:Name="tagTextBlock3" HorizontalAlignment="Left" Margin="161,230,0,0" TextWrapping="Wrap" Text="结果：" VerticalAlignment="Top" FontSize="16"/>
+        <!--<TextBlock x:Name="tagResultTextBlock" HorizontalAlignment="Left" Margin="221,230,0,0" TextWrapping="Wrap" Text="此处展示分词结果" VerticalAlignment="Top" Width="392" Height="85" FontSize="14" FontStyle="Italic"/>-->
+        <TextBox x:Name="tagResultTextBox" HorizontalAlignment="Left" Height="85" Margin="221,217,0,0" TextWrapping="Wrap" Text="此处展示分词结果" VerticalAlignment="Top" Width="401" IsReadOnly="True"  FontSize="16"/>
+
+        <TextBlock x:Name="sentimentTextBlock1" HorizontalAlignment="Left" Margin="79,363,0,0" TextWrapping="Wrap" Text="情感分析" VerticalAlignment="Top" FontSize="16"/>
+        <TextBlock x:Name="sentimentTextBlock2" HorizontalAlignment="Left" Margin="97,406,0,0" TextWrapping="Wrap" Text="请输入一句话：" VerticalAlignment="Top" FontSize="16"/>
+        <TextBox x:Name="sentimentTextBox" HorizontalAlignment="Left" Height="42" Margin="221,406,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" VerticalScrollBarVisibility="Visible" FontSize="16"/>
+        <Button x:Name="sentimentButton" Content="执行" HorizontalAlignment="Left" Margin="547,420,0,0" VerticalAlignment="Top" Width="75" Height="28" Click="sentimentButton_Click"/>
+        <TextBlock x:Name="sentimentTextBlock3" HorizontalAlignment="Left" Margin="161,488,0,0" TextWrapping="Wrap" Text="结果：" VerticalAlignment="Top" FontSize="16"/>
+        <!--<TextBlock x:Name="sentimentResultTextBlock" HorizontalAlignment="Left" Margin="703,494,0,0" TextWrapping="Wrap" Text="此处展示情感分析结果" VerticalAlignment="Top" Width="177" Height="85" FontSize="14" FontStyle="Italic"/>-->
+        <TextBox x:Name="sentimentResultTextBox" HorizontalAlignment="Left" Height="85" Margin="221,488,0,0" TextWrapping="Wrap" Text="此处展示情感分析结果" VerticalAlignment="Top" Width="401" IsReadOnly="True"  FontSize="16"/>
+
+        <TextBlock x:Name="userHistoryTextBlock" HorizontalAlignment="Left" Margin="663,75,0,0" TextWrapping="Wrap" Text="用户操作历史" VerticalAlignment="Top" Width="110" FontSize="16"/>
+        <!--<TextBlock x:Name="userHistoryDetailTextBlock" HorizontalAlignment="Left" Margin="663,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="310" Height="509" FontSize="14" FontStyle="Italic" TextAlignment="Center" LineHeight="20"><Run Text="此处展示"/><Run Text="用户操作历史"/><LineBreak/><Run Text="时间 操作 使用文件途径 "/><LineBreak/><Run Text="保存结果的文件路径等等"/></TextBlock>-->
+        <TextBox x:Name="userHistoryDetailTextBox" HorizontalAlignment="Left" Height="459" Margin="670,114,0,0" TextWrapping="Wrap" Text="此处展示用户浏览历史" VerticalAlignment="Top" Width="305" IsReadOnly="True"/>
+
+        <!--<ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="26,28,0,0" VerticalAlignment="Top" Width="120" Text="功能" SelectedIndex="0">
+            <ComboBoxItem Content="功能"/>
+            <ComboBoxItem Content="分词"/>
+            <ComboBoxItem Content="情感分析"/>
+        </ComboBox>
+        <StackPanel HorizontalAlignment="Right" Height="105" Margin="0,10,10,0" VerticalAlignment="Top" Width="774"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="100" Margin="306,167,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="listBox_SelectionChanged">
+            <ListBoxItem Content="功能"/>
+            <ListBoxItem Content="分词"/>
+            <ListBoxItem Content="分析"/>
+        </ListBox>-->
 
     </Grid>
 </Window>
