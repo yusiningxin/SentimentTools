@@ -26,6 +26,25 @@ namespace SentimentTools
         {
             InitializeComponent();
             Global.conf();
+            loadLogInfo();
+        }
+        public void loadLogInfo ()
+        {
+            StreamReader reader = new StreamReader(Global.path+Global.logInfoPath, Encoding.Default);
+            string ans = "";
+            while (!reader.EndOfStream)
+            {
+                string tmp = reader.ReadLine();
+                tmp.Trim();
+                Console.Write(tmp);
+                if (tmp != "")
+                {
+                    ans = ans + tmp;
+                    ans = ans + "\n";
+                }
+               
+            }
+            userHistoryDetailTextBox.Text = ans;
         }
 
         private void tagButton_Click(object sender, RoutedEventArgs e)
@@ -40,9 +59,10 @@ namespace SentimentTools
 
         private void sentimentButton_Click(object sender, RoutedEventArgs e)
         {
-            string strtxt = sentimentTextBox.Text.ToString();
-            sentimentResultTextBox.Text = strtxt;
-            MyLog.WriteInfo(Global.TypeSentenceSentiment, strtxt);
+            string str = sentimentTextBox.Text.ToString();
+            string ans = SentimentProcess.getSentenceSentiment(str);
+            sentimentResultTextBox.Text = ans;
+            MyLog.WriteInfo(Global.TypeSentenceSentiment, str+"   "+ans);
         }
 
         private void functionMenu_Initialized(object sender, EventArgs e)

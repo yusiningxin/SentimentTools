@@ -63,6 +63,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SentimentProcess.cs" />
     <Compile Include="TagWindow.xaml.cs">
       <DependentUpon>TagWindow.xaml</DependentUpon>
     </Compile>

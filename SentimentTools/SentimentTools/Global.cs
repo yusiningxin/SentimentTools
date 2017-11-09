@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace SentimentTools
 {
@@ -10,6 +20,7 @@ namespace SentimentTools
     {
         public const string TypeSentenceSentiment = "语句情感分析";
         public const string TypeSentenceCopus = "语句分词处理";
+        public const string logInfoPath = "/logs/logInfo.txt";
         public static string path;
         public static void conf()
         {
@@ -29,5 +40,10 @@ namespace SentimentTools
             }
             
         }
+        public static void updateFilePath ()
+        {
+
+        }
+      
     }
 }
