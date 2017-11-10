@@ -69,9 +69,9 @@ namespace SentimentTools
 
         private void tagFunction_Click(object sender, RoutedEventArgs e)
         {
-            TagWindow tw = new TagWindow();
-            tw.Owner = this;
-            tw.Show();
+            TagWindow tagwindow = new TagWindow();
+            tagwindow.Owner = this;
+            tagwindow.Show();
         }
     }
 }
