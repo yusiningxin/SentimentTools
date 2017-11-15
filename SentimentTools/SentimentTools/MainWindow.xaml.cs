@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace SentimentTools
 {
@@ -20,11 +21,49 @@ namespace SentimentTools
     /// </summary>
     public partial class MainWindow : Window
     {
+        //public static readonly ILog log = LogManager.GetLogger("rizhi");
         public MainWindow()
         {
             InitializeComponent();
+            Global.conf();
+            loadLogInfo();
+        }
+        public void loadLogInfo ()
+        {
+            StreamReader reader = new StreamReader(Global.path+Global.logInfoPath, Encoding.Default);
+            string ans = "";
+            while (!reader.EndOfStream)
+            {
+                string tmp = reader.ReadLine();
+                tmp.Trim();
+                Console.Write(tmp);
+                if (tmp != "")
+                {
+                    ans = ans + tmp;
+                    ans = ans + "\n";
+                }
+               
+            }
+            userHistoryDetailTextBox.Text = ans;
         }
 
+        private void tagButton_Click(object sender, RoutedEventArgs e)
+        {
+            String str = tagTextBox.Text.ToString();
+            string ans = CopusProcess.getSentenceCopus(str);
+            tagResultTextBox.Text = ans;
+            MyLog.WriteInfo(Global.TypeSentenceCopus, ans);
+
+        }
+
+
+        private void sentimentButton_Click(object sender, RoutedEventArgs e)
+        {
+            string str = sentimentTextBox.Text.ToString();
+            string ans = SentimentProcess.getSentenceSentiment(str);
+            sentimentResultTextBox.Text = ans;
+            MyLog.WriteInfo(Global.TypeSentenceSentiment, str+"   "+ans);
+        }
 
         private void functionMenu_Initialized(object sender, EventArgs e)
         {
@@ -57,15 +96,6 @@ namespace SentimentTools
             App.Current.Shutdown();
         }
 
-        private void tagButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void sentimentButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void tagFunction_Click(object sender, RoutedEventArgs e)
         {
@@ -73,5 +103,9 @@ namespace SentimentTools
             tagwindow.Owner = this;
             tagwindow.Show();
         }
+
+
+
+
     }
 }

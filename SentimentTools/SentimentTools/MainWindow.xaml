@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SentimentTools"
         mc:Ignorable="d"
+
         Title="情感分析工具" Height="650" Width="1000" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
 
     <Grid Margin="0,0,0,-2">
@@ -39,7 +40,7 @@
         <Button x:Name="tagButton" Content="执行" HorizontalAlignment="Left" Margin="538,163,0,0" VerticalAlignment="Top" Width="75" Height="28" Click="tagButton_Click"/>
         <TextBlock x:Name="tagTextBlock3" HorizontalAlignment="Left" Margin="161,230,0,0" TextWrapping="Wrap" Text="结果：" VerticalAlignment="Top" FontSize="16"/>
         <!--<TextBlock x:Name="tagResultTextBlock" HorizontalAlignment="Left" Margin="221,230,0,0" TextWrapping="Wrap" Text="此处展示分词结果" VerticalAlignment="Top" Width="392" Height="85" FontSize="14" FontStyle="Italic"/>-->
-        <TextBox x:Name="tagResultTextBox" HorizontalAlignment="Left" Height="85" Margin="221,217,0,0" TextWrapping="Wrap" Text="此处展示分词结果" VerticalAlignment="Top" Width="401" IsReadOnly="True"/>
+        <TextBox x:Name="tagResultTextBox" HorizontalAlignment="Left" Height="85" Margin="221,217,0,0" TextWrapping="Wrap" Text="此处展示分词结果" VerticalAlignment="Top" Width="401" IsReadOnly="True"  FontSize="16"/>
 
         <TextBlock x:Name="sentimentTextBlock1" HorizontalAlignment="Left" Margin="79,363,0,0" TextWrapping="Wrap" Text="情感分析" VerticalAlignment="Top" FontSize="16"/>
         <TextBlock x:Name="sentimentTextBlock2" HorizontalAlignment="Left" Margin="97,406,0,0" TextWrapping="Wrap" Text="请输入一句话：" VerticalAlignment="Top" FontSize="16"/>
@@ -47,7 +48,7 @@
         <Button x:Name="sentimentButton" Content="执行" HorizontalAlignment="Left" Margin="547,420,0,0" VerticalAlignment="Top" Width="75" Height="28" Click="sentimentButton_Click"/>
         <TextBlock x:Name="sentimentTextBlock3" HorizontalAlignment="Left" Margin="161,488,0,0" TextWrapping="Wrap" Text="结果：" VerticalAlignment="Top" FontSize="16"/>
         <!--<TextBlock x:Name="sentimentResultTextBlock" HorizontalAlignment="Left" Margin="703,494,0,0" TextWrapping="Wrap" Text="此处展示情感分析结果" VerticalAlignment="Top" Width="177" Height="85" FontSize="14" FontStyle="Italic"/>-->
-        <TextBox x:Name="sentimentResultTextBox" HorizontalAlignment="Left" Height="85" Margin="221,488,0,0" TextWrapping="Wrap" Text="此处展示情感分析结果" VerticalAlignment="Top" Width="401" IsReadOnly="True"/>
+        <TextBox x:Name="sentimentResultTextBox" HorizontalAlignment="Left" Height="85" Margin="221,488,0,0" TextWrapping="Wrap" Text="此处展示情感分析结果" VerticalAlignment="Top" Width="401" IsReadOnly="True"  FontSize="16"/>
 
         <TextBlock x:Name="userHistoryTextBlock" HorizontalAlignment="Left" Margin="663,75,0,0" TextWrapping="Wrap" Text="用户操作历史" VerticalAlignment="Top" Width="110" FontSize="16"/>
         <!--<TextBlock x:Name="userHistoryDetailTextBlock" HorizontalAlignment="Left" Margin="663,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="310" Height="509" FontSize="14" FontStyle="Italic" TextAlignment="Center" LineHeight="20"><Run Text="此处展示"/><Run Text="用户操作历史"/><LineBreak/><Run Text="时间 操作 使用文件途径 "/><LineBreak/><Run Text="保存结果的文件路径等等"/></TextBlock>-->

@@ -5,7 +5,6 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-
 namespace SentimentTools
 {
     /// <summary>
@@ -13,5 +12,6 @@ namespace SentimentTools
     /// </summary>
     public partial class App : Application
     {
+        //log4net.Config.XmlConfigurator;
     }
 }
