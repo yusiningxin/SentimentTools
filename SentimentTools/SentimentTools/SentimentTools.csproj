@@ -67,6 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppConfig.cs" />
     <Compile Include="FlieNotExistHintWindow.xaml.cs">
       <DependentUpon>FlieNotExistHintWindow.xaml</DependentUpon>
     </Compile>

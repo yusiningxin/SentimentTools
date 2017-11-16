@@ -28,5 +28,20 @@ namespace SentimentTools
             process.WaitForExit();//等待程序执行完退出进程 　　 　　
             return ans;
         }
+
+        public static Boolean beginCopus()
+        {
+           
+            Process process = new Process();
+            process.StartInfo.FileName = Global.path + "\\Debug\\Copus.bat";
+
+            process.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动         
+            process.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息          
+            process.StartInfo.CreateNoWindow = true;//不显示程序窗口           
+            process.Start();
+            process.WaitForExit();//等待程序执行完退出进程 　　 　　
+            return true;
+        }
+
     }
 }

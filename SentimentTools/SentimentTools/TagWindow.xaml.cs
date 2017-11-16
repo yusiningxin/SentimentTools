@@ -36,8 +36,14 @@ namespace SentimentTools
             {
                 String untagFilePath= openFileDialog.FileName;
                 this.untagFilePathTextBox.Text = untagFilePath;
+                Console.WriteLine(untagFilePath);
                 this.tagDetailResultFilePathTextBox.Text = untagFilePath.Substring(0,untagFilePath.Length-4)+"_分词详细结果"+".txt";
                 this.tagStatisicResultFilePathTextBox.Text = untagFilePath.Substring(0, untagFilePath.Length - 4) + "_分词统计结果" + ".txt";
+
+                AppConfig.updateMap(Global.CopusTrainFile, untagFilePath);
+                AppConfig.updateMap(Global.CopusResultFile, this.tagDetailResultFilePathTextBox.Text);
+                AppConfig.updateMap(Global.CopusStatisticResultFile, this.tagStatisicResultFilePathTextBox.Text);
+
             }
         }
 
@@ -69,6 +75,7 @@ namespace SentimentTools
             if (result == true)
             {
                 this.stopListFilePathTextBox.Text = openFileDialog.FileName;
+                AppConfig.updateMap(Global.CopusStoplist, this.stopListFilePathTextBox.Text);
             }
         }
 
@@ -108,7 +115,14 @@ namespace SentimentTools
 
         private void tagButton_Click(object sender, RoutedEventArgs e)
         {
-
+            AppConfig.updateXml();
+            string msg = "\n分词文件路径：" +AppConfig.getPathValue(Global.CopusTrainFile)+"\n结果文件路径: "+AppConfig.getPathValue(Global.CopusResultFile);
+            MyLog.WriteInfo(Global.TypeFileCopus, msg);
+            Boolean result = CopusProcess.beginCopus();
+            if (result)
+            {
+                MessageBox.Show("分词成功,请点击【查看】按钮显示详细信息。");
+            }
         }
 
         private void qiutButton_Click(object sender, RoutedEventArgs e)

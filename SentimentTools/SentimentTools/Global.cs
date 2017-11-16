@@ -13,13 +13,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace SentimentTools
 {
     class Global
     {
+
         public const string TypeSentenceSentiment = "语句情感分析";
         public const string TypeSentenceCopus = "语句分词处理";
+        public const string TypeFileCopus = "文件分词处理";
+
+        public const string CopusTrainFile = "copus_train_text";
+        public const string CopusStoplist = "copus_stoplist";       
+        public const string CopusResultFile = "dict_onlyfor_copus";
+        public const string CopusStatisticResultFile = "dict_onlyfor_copus_statistic";
+
+
+
         public const string logInfoPath = "/logs/logInfo.txt";
         public static string path;
         public static void conf()
@@ -38,12 +49,12 @@ namespace SentimentTools
                 Directory.CreateDirectory(path + "/usr");
                 MyLog.WriteDebug("Create Directionart usr");
             }
-            
-        }
-        public static void updateFilePath ()
-        {
+            string xmlpath = path + "/Debug/conf/AppConfig.xml";
+            AppConfig.loadXmlFile(xmlpath);
+
 
         }
+        
       
     }
 }
