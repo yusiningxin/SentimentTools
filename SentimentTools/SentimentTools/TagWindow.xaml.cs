@@ -23,6 +23,7 @@ namespace SentimentTools
         public TagWindow()
         {
             InitializeComponent();
+            this.stopListFilePathTextBox.Text = Global.path.Replace("\\", "/") + "/default/Copus/stoplist.txt";
         }
 
         private void untagFilePathButton_Click(object sender, RoutedEventArgs e)
@@ -40,9 +41,7 @@ namespace SentimentTools
                 this.tagDetailResultFilePathTextBox.Text = untagFilePath.Substring(0,untagFilePath.Length-4)+"_分词详细结果"+".txt";
                 this.tagStatisicResultFilePathTextBox.Text = untagFilePath.Substring(0, untagFilePath.Length - 4) + "_分词统计结果" + ".txt";
 
-                AppConfig.updateMap(Global.CopusTrainFile, untagFilePath);
-                AppConfig.updateMap(Global.CopusResultFile, this.tagDetailResultFilePathTextBox.Text);
-                AppConfig.updateMap(Global.CopusStatisticResultFile, this.tagStatisicResultFilePathTextBox.Text);
+              
 
             }
         }
@@ -51,12 +50,14 @@ namespace SentimentTools
         {
             if(this.defaultStopListRadioButton1.IsChecked==true)
             {
+                this.stopListFilePathTextBox.Text=Global.path.Replace("\\", "/") + "/default/Copus/stoplist.txt";
                 this.stopListFilePathTextBox.Visibility = Visibility.Hidden;
                 this.stopListFilePathButton.Visibility = Visibility.Hidden;
             }
         }
         private void defaultStopListRadioButton2_Click(object sender, RoutedEventArgs e)
         {
+
             if (this.defaultStopListRadioButton2.IsChecked == true)
             {
                 this.stopListFilePathTextBox.Visibility = Visibility.Visible;
@@ -115,6 +116,13 @@ namespace SentimentTools
 
         private void tagButton_Click(object sender, RoutedEventArgs e)
         {
+            AppConfig.updateMap(Global.CopusTrainFile, this.untagFilePathTextBox.Text);
+            AppConfig.updateMap(Global.CopusResultFile, this.tagDetailResultFilePathTextBox.Text);
+            AppConfig.updateMap(Global.CopusStatisticResultFile, this.tagStatisicResultFilePathTextBox.Text);
+
+            if (this.stopListFilePathTextBox.Text!="")
+                AppConfig.updateMap(Global.CopusStoplist, this.stopListFilePathTextBox.Text);
+
             AppConfig.updateXml();
             string msg = "\n分词文件路径：" +AppConfig.getPathValue(Global.CopusTrainFile)+"\n结果文件路径: "+AppConfig.getPathValue(Global.CopusResultFile);
             MyLog.WriteInfo(Global.TypeFileCopus, msg);
